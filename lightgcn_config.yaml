@@ -1,0 +1,49 @@
+
+model: LightGCN
+data_path: /data/ephemeral/home/code/dataset/
+dataset: my_dataset   # 미리 my_dataset.inter를 만들어야 됩니다.
+
+USER_ID_FIELD: user_id
+ITEM_ID_FIELD: item_id
+TIME_FIELD: timestamp
+embedding_size: 64    # 64일 때 성능 가장 좋음
+
+# wandb 설정
+log_wandb: True
+wandb_project: 'LGCN_Project'
+
+load_col:
+    inter: [user_id, item_id, timestamp]
+
+epochs: 100
+stopping_step: 5      # early stop의 patience
+
+eval_step: 1
+eval_args:
+    group_by: user
+    order: TO
+    split: {'LS': 'valid_and_test'}
+    mode: uni100      # full로 바꾸면 전체 셋으로 eval / uni100은 100개 추출
+
+train_neg_sample_args:
+    distribution: uniform
+    sample_num: 4
+    dynamic: False    # Hard Negative를 결정하는 파라미터, HN을 원하면 True로
+
+train_batch_size: 16384
+learning_rate: 0.01
+num_workers: 6
+
+n_layers: 2                 # propagation 범위를 설정합니다. 1~3정도로 설정
+reg_weight: 1e-03
+metrics: ['Recall', 'NDCG']
+topk: 10
+valid_metric: Recall@10     # early stop의 기준이 됨
+
+use_gpu: True
+gpu_id: 0
+device: cuda
+
+
+# 정리 : hyperparameter는 batch_size, learning_rate, n_layers, reg_weight가 있음
+# metrics는 Recall@10, NDCG 말고 더 있는데 
