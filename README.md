@@ -1,8 +1,10 @@
 =================
-     사 용 법
+     Usage
 =================
 
-### DIR 구조
+Project Structure
+-----------------
+
 Project/
 ├── data/
 │   └── train/
@@ -16,11 +18,11 @@ Project/
 ├── multivae_config.yaml
 └── lightgcn_config.yaml
 
-### 1. RecBole 깔기
+### 1. Install RecBole
 pip install recbole==1.2.1
 
-### 2. inter 파일 만들기
+### 2. make inter file
 python make_inter.py
 
-### 3. 모델 돌리기
+### 3. train the model
 python train_recbole.py --model EASE
