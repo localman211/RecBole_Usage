@@ -4,7 +4,7 @@
 
 Project Structure
 -----------------
-
+```
 Project/
 ├── data/
 │   └── train/
@@ -17,6 +17,7 @@ Project/
 ├── ease_config.yaml            # EASE 모델용 설정 파일
 ├── multivae_config.yaml
 └── lightgcn_config.yaml
+```
 
 ### 1. Install RecBole
 pip install recbole==1.2.1
