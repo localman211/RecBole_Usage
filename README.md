@@ -1,8 +1,7 @@
-=================
-     Usage
-=================
 
-Project Structure
+# Usage
+
+## Project Structure
 -----------------
 ```
 Project/
